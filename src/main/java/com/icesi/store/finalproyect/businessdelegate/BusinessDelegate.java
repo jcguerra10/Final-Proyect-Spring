@@ -29,6 +29,7 @@ public interface BusinessDelegate {
 	// PRODUCTSUBCATEGORY
 	public List<Productsubcategory> showProductsubcategoryList();
 	Productsubcategory addProductsubcategory(Productsubcategory p);
+
 	// PRODUCTCATEGORY
 	public List<Productcategory> showProductcategoryList();
 	Productcategory addProductcategory(Productcategory p);

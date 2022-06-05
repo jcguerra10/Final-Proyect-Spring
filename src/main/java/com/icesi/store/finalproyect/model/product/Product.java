@@ -101,8 +101,7 @@ public class Product implements Serializable {
 	private List<Billofmaterial> billofmaterials2;
 
 	// bi-directional many-to-one association to Productmodel
-	@ManyToOne
-	@JoinColumn(name = "productmodelid")
+
 	private Productmodel productmodel;
 
 	// bi-directional many-to-one association to Productsubcategory
@@ -112,13 +111,11 @@ public class Product implements Serializable {
 	private Productsubcategory productsubcategory;
 
 	// bi-directional many-to-one association to Unitmeasure
-	@ManyToOne
-	@JoinColumn(name = "sizeunitmeasurecode")
+
 	private Unitmeasure unitmeasure1;
 
 	// bi-directional many-to-one association to Unitmeasure
-	@ManyToOne
-	@JoinColumn(name = "weightunitmeasurecode")
+
 	private Unitmeasure unitmeasure2;
 
 	// bi-directional many-to-one association to Productcosthistory
