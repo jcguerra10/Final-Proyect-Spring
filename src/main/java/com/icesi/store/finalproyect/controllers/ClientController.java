@@ -77,4 +77,10 @@ public class ClientController {
         }
         return dir;
     }
+
+    @GetMapping("/remove/{id}")
+    public String removeStore(@PathVariable("id") Integer id, Model model) {
+        service.removeClient(id);
+        return "redirect:/store";
+    }
 }
