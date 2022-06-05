@@ -61,4 +61,19 @@ public class LocationServiceImp implements LocationService {
 		dao.update(opLoc);
 	}
 
+	@Override
+	public Iterable<Location> findAll() {
+		return dao.getAll();
+	}
+
+	@Override
+	public Optional<Location> findById(Integer id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public void delete(Location loc) {
+		dao.deleteById(loc.getLocationid());
+	}
+
 }

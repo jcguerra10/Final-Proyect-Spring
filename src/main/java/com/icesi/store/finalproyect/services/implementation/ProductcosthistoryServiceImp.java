@@ -58,4 +58,19 @@ public class ProductcosthistoryServiceImp implements ProductcosthistoryService {
 		dao.update(oppch);
 	}
 
+	@Override
+	public Iterable<Productcosthistory> findAll() {
+		return dao.getAll();
+	}
+
+	@Override
+	public Optional<Productcosthistory> findById(Integer id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public void delete(Productcosthistory product) {
+		dao.deleteById(product.getId());
+	}
+
 }

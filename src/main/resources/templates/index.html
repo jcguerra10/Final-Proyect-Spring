@@ -13,6 +13,7 @@
           href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
 <div th:switch="${apps}" class="container my-5">
@@ -27,6 +28,33 @@
             <p>
                 <a href="/store"><i class="fas fa-duotone fa-flag ml-2"></i> Stores</a>
             </p>
+        </div>
+    </div>
+    <div th:switch="${apps}" class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 th:case="null">Index!!!</h2>
+
+                <p>
+                    <a href="/products/"><i class="fas fa-duotone fa-cart-arrow-down ml-2"></i> Products</a>
+                </p>
+
+                <p>
+                    <a href="/locations/"><i class="fas fa-duotone fa-flag ml-2"></i> Locations</a>
+                </p>
+
+                <p>
+                    <a href="/historiccosts/"><i class="fas fa-duotone fa-book ml-2"></i> Historic Costs</a>
+                </p>
+
+                <p>
+                    <a href="/inventoryproduct/"><i class="fas fa-box-open ml-2"></i> Inventory</a>
+                </p>
+
+                <p>
+                    <a href="/logout"><i class="fas fa-power-off ml-2"></i> Log Out</a>
+                </p>
+            </div>
         </div>
     </div>
 </div>

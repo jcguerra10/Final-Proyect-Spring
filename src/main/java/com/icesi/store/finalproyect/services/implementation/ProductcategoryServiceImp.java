@@ -34,4 +34,19 @@ public class ProductcategoryServiceImp implements ProductcategoryService {
 		opLoc.setName(pc.getName());
 		pcRepository.save(opLoc);
 	}
+
+	@Override
+	public Iterable<Productcategory> findAll() {
+		return pcRepository.getAll();
+	}
+
+	@Override
+	public Optional<Productcategory> findById(Integer id) {
+		return pcRepository.findById(id);
+	}
+
+	@Override
+	public void delete(Productcategory product) {
+		pcRepository.deleteById(product.getProductcategoryid());
+	}
 }

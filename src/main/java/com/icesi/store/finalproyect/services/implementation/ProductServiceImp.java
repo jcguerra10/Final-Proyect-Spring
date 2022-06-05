@@ -15,6 +15,21 @@ public class ProductServiceImp implements ProductService {
 	@Autowired
 	public ProductDaoImp dao;
 
+	@Override
+	public void delete(Product product) {
+//		productRepository.delete(product);
+		dao.deleteById(product.getProductid());
+	}
+	@Override
+	public Optional<Product> findById(Integer id) {
+
+		return dao.findById(id);
+	}
+	@Override
+	public Iterable<Product> findAll() {
+//		return productRepository.findAll();
+		return dao.getAll();
+	}
 	@Transactional
 	@Override
 	public void saveProduct(Product pro) {

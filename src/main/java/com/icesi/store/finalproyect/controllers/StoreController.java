@@ -1,5 +1,6 @@
 package com.icesi.store.finalproyect.controllers;
 
+import com.icesi.store.finalproyect.businessdelegate.BusinessDelegate;
 import com.icesi.store.finalproyect.model.Store;
 import com.icesi.store.finalproyect.services.implementation.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ import java.util.Optional;
 public class StoreController {
 
     @Autowired
-    private StoreService service;
+    BusinessDelegate delegate;
 
     @GetMapping()
     public String showStore(Model model) {
-        model.addAttribute("stores", service.findAll());
+        model.addAttribute("stores", delegate.showStores());
         return "/store/index";
     }
 
@@ -37,7 +38,7 @@ public class StoreController {
 
         if (!action.equals("Cancel")) {
             if (!bindingResult.hasErrors()) {
-                service.addStore(store);
+                delegate.addStore(store);
             } else {
                 ret = "/store/add";
             }
@@ -48,10 +49,8 @@ public class StoreController {
 
     @GetMapping("/edit/{id}")
     public String editStoreScreen(@PathVariable("id") Integer id, Model model) {
-        Optional<Store> findStore = service.findById(id);
-        if (findStore.isEmpty())
-            throw new IllegalArgumentException("Invalid Store Id:" + id);
-        model.addAttribute("store", findStore.get());
+        Store findStore = delegate.getStore(id);
+        model.addAttribute("store", findStore);
         return "/store/edit";
     }
     @PostMapping("/edit/{id}")
@@ -62,8 +61,8 @@ public class StoreController {
 
         if (!action.equals("Cancel")) {
             if (!bindingResult.hasErrors()) {
-                service.updateStore(store, id);
-                model.addAttribute("stores", service.findAll());
+                delegate.editStore(id,store);
+                model.addAttribute("stores", delegate.showStores());
             } else {
                 model.addAttribute("store", store);
                 dir = "/store/edit";

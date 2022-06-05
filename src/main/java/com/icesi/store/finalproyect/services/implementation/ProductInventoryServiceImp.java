@@ -48,4 +48,19 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
 		dao.update(opLoc);
 	}
 
+	@Override
+	public Iterable<Productinventory> findAll() {
+		return dao.getAll();
+	}
+
+	@Override
+	public Optional<Productinventory> findById(Integer id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public void delete(Productinventory product) {
+		dao.deleteById(product.getId());
+	}
+
 }

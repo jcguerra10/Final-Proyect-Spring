@@ -31,4 +31,19 @@ private ProductsubcategoryDao dao;
 		opLoc.setName(pc.getName());
 		dao.update(opLoc);
 	}
+
+	@Override
+	public Iterable<Productsubcategory> findAll() {
+		return dao.getAll();
+	}
+
+	@Override
+	public Optional<Productsubcategory> findById(Integer id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public void delete(Productsubcategory product) {
+		dao.deleteById(product.getProductsubcategoryid());
+	}
 }
