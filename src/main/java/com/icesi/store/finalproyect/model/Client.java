@@ -1,6 +1,9 @@
 package com.icesi.store.finalproyect.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "client")
@@ -11,10 +14,12 @@ public class Client {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
+    @NotNull(message = "Can not be null")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
+    @Length(min = 2)
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
