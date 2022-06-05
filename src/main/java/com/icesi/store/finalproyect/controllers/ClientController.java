@@ -77,7 +77,7 @@ public class ClientController {
 
     @GetMapping("/remove/{id}")
     public String removeStore(@PathVariable("id") Integer id, Model model) {
-        service.removeClient(id);
+        delegate.deleteClient(delegate.getClient(id));
         return "redirect:/store";
     }
 }

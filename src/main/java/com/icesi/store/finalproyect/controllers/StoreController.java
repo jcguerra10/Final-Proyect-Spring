@@ -73,7 +73,7 @@ public class StoreController {
 
     @GetMapping("/remove/{id}")
     public String removeStore(@PathVariable("id") Integer id, Model model) {
-        service.removeStore(id);
+        delegate.deleteStore(delegate.getStore(id));
         return "redirect:/store";
     }
 
