@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,7 +22,12 @@ public class StoreController {
 
     @GetMapping("")
     public String showStore(Model model) {
+        List<Store> del = delegate.showStores();
+        del.forEach(i ->{
+            System.out.println(i);
+        });
         model.addAttribute("stores", delegate.showStores());
+
         return "/store/index";
     }
 

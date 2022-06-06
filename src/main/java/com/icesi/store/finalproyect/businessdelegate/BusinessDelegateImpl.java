@@ -117,7 +117,8 @@ public class BusinessDelegateImpl implements BusinessDelegate {
 	public Productsubcategory addProductsubcategory(Productsubcategory p) {
 		HttpEntity<Productsubcategory> request = new HttpEntity<>(p);
 		//log.info("aqui entro");
-		return template.postForObject(baseurl + "/ProductsubcategoryRest/addproduct/", request, Productsubcategory.class);
+		System.out.println("----");
+		return template.postForObject(baseurl + "/productsubcategoryRest/addsubcategory/", request, Productsubcategory.class);
 	}
 
 	@Override

@@ -19,6 +19,7 @@ public class ProductsubcategoryRestController {
     }
     @PostMapping("/productsubcategoryRest/addsubcategory/")
     public void addProduct(@RequestBody Productsubcategory cli) {
+        System.out.println("-----"+cli);
         productsubcategoryService.saveProductsubcategory(cli);
     }
 }

@@ -30,14 +30,14 @@ public class ProductController {
 		return "/products/index";
 	}
 
-	@GetMapping("/add")
+	@GetMapping("/add/")
 	public String productAddScreen(Model model) {
 		model.addAttribute(new Product());
 		model.addAttribute("subcategories", delegate.showProductsubcategoryList());
 		return "/products/add";
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/add/")
 	public String productAdd(@Valid @ModelAttribute Product product, BindingResult bindingResult, Model model,
 			@RequestParam(value = "action", required = true) String action, String startdate, String enddate) {
 
@@ -87,6 +87,9 @@ public class ProductController {
 		psc.setName(subcategory);
 
 		psc.setProductcategory(pc);
+
+		System.out.println(pc);
+		System.out.println(psc);
 
 		delegate.addProductcategory(pc);
 		delegate.addProductsubcategory(psc);

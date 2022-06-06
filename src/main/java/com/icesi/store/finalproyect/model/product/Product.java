@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -81,14 +82,19 @@ public class Product implements Serializable {
 	@Positive
 	private BigDecimal size;
 
-	@NonNull()
+	@NotNull
 	@Positive
 	@Min(value = 0)
 	private BigDecimal standardcost;
 
 	private String style;
-	
-	@NonNull()
+
+	public void setWeight(@NonNull BigDecimal weight) {
+		this.weight = weight;
+	}
+
+
+	@NotNull
 	@Positive
 	@Min(value = 0, message = "Tienes que ser Mayor que 1")
 	private BigDecimal weight;
@@ -100,14 +106,10 @@ public class Product implements Serializable {
 	private Productmodel productmodel;
 
 	// bi-directional many-to-one association to Productsubcategory
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "productsubcategoryid")
-	@NonNull
 	private Productsubcategory productsubcategory;
-
-	// bi-directional many-to-one association to Unitmeasure
-
-
 
 	// bi-directional many-to-one association to Productcosthistory
 	@JsonIgnore
@@ -357,7 +359,4 @@ public class Product implements Serializable {
 		this.style = style;
 	}
 
-	public void setWeight(BigDecimal weight) {
-		this.weight=weight;
-	}
 }

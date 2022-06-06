@@ -23,9 +23,9 @@ public class HistoricCostController {
     @Autowired
     BusinessDelegateImpl delegate;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String products(Model model) {
-        model.addAttribute("historiccosts", delegate.showProductList());
+        model.addAttribute("historiccosts", delegate.showProductHistoriccostList());
         return "/historicCosts/index";
     }
 

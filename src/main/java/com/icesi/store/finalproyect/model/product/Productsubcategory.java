@@ -40,7 +40,6 @@ public class Productsubcategory implements Serializable {
 	@OneToMany(mappedBy = "productsubcategory")
 	private List<Product> products;
 
-	// bi-directional many-to-one association to Productcategory
 	@ManyToOne
 	@JoinColumn(name = "productcategoryid")
 	private Productcategory productcategory;

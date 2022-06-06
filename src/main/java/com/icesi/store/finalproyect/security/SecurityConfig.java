@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.authorizeRequests()
+		httpSecurity.cors().disable().csrf().disable().authorizeRequests()
         	.antMatchers("/products/").hasRole(UserType.administrator.toString())
         	.antMatchers("/locations/").hasRole(UserType.administrator.toString())
         	.antMatchers("/historicCosts/").hasAnyRole(UserType.operator.toString(), UserType.administrator.toString())
