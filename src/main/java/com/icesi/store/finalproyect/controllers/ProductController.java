@@ -86,12 +86,13 @@ public class ProductController {
 		Productsubcategory psc = new Productsubcategory();
 		psc.setName(subcategory);
 
-		psc.setProductcategory(pc);
+
 
 		System.out.println(pc);
 		System.out.println(psc);
 
 		delegate.addProductcategory(pc);
+		psc.setProductcategory(pc);
 		delegate.addProductsubcategory(psc);
 
 		return "redirect:/products/add/";
