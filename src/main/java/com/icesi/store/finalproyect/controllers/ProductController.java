@@ -22,9 +22,9 @@ import java.util.Optional;
 public class ProductController {
 
 	@Autowired
-	BusinessDelegate delegate;
+	BusinessDelegateImpl delegate;
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("products", delegate.showProductList());
 		return "/products/index";

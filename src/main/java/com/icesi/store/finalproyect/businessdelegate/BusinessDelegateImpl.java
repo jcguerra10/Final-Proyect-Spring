@@ -8,30 +8,32 @@ import java.util.List;
 import com.icesi.store.finalproyect.model.Client;
 import com.icesi.store.finalproyect.model.Store;
 import com.icesi.store.finalproyect.model.product.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.log4j.Log4j2;
-
 //@Log4j2
 @Component
 public class BusinessDelegateImpl implements BusinessDelegate {
 
+	@Setter
+	@Getter
 	private RestTemplate template;
 
 	private final String baseurl = "http://localhost:8081/api";
 
 	public BusinessDelegateImpl() {
-		this.template = new RestTemplate();
+		this.template= new RestTemplate();
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
 		messageConverters.add(converter);
-		this.template.setMessageConverters(messageConverters);
 	}
 
 	public void setRestTemplate(RestTemplate resttemplate) {
@@ -44,9 +46,11 @@ public class BusinessDelegateImpl implements BusinessDelegate {
 	}
 
 	@Override
-	public List<Client> showClients() {
-		Client[] productarray = template.getForObject(baseurl + "/clientsRest/list", Client[].class);
-		return Arrays.asList(productarray);
+	public Client[] showClients() {
+		ResponseEntity<Client[]> response= template.getForEntity(baseurl + "/clientsRest/list", Client[].class);
+		Client[] productarray = response.getBody();
+
+		return productarray;
 	}
 
 	@Override

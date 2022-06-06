@@ -102,6 +102,8 @@ public class Product implements Serializable {
 
 	// bi-directional many-to-one association to Productmodel
 
+	@ManyToOne
+	@JoinColumn(name = "productmodelid", insertable = false, updatable = false)
 	private Productmodel productmodel;
 
 	// bi-directional many-to-one association to Productsubcategory
@@ -112,10 +114,16 @@ public class Product implements Serializable {
 
 	// bi-directional many-to-one association to Unitmeasure
 
+
+	@ManyToOne
+	@JoinColumn(name = "sizeunitmeasurecode", insertable = false, updatable = false)
 	private Unitmeasure unitmeasure1;
 
 	// bi-directional many-to-one association to Unitmeasure
 
+
+	@ManyToOne
+	@JoinColumn(name = "sizeunitmeasurecode", insertable = false, updatable = false)
 	private Unitmeasure unitmeasure2;
 
 	// bi-directional many-to-one association to Productcosthistory

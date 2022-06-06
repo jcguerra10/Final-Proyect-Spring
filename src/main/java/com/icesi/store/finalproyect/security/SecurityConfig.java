@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	.antMatchers("/locations/").hasRole(UserType.administrator.toString())
         	.antMatchers("/historicCosts/").hasAnyRole(UserType.operator.toString(), UserType.administrator.toString())
         	.antMatchers("/inventoryProduct/").hasAnyRole(UserType.operator.toString(), UserType.administrator.toString())
+				.antMatchers("/api/**").permitAll()
             .antMatchers("/css/**", "/js/**", "/registration").permitAll()
             .anyRequest().authenticated()
             .and()

@@ -13,7 +13,7 @@ public interface BusinessDelegate {
 	RestTemplate getRestTemplate();
 
 	//CLIENT
-	List<Client> showClients();
+	Client[] showClients();
 	Client addClient(Client c);
 	Client getClient(Integer id);
 	public void editClient(Integer id, Client c);
