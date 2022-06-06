@@ -67,7 +67,7 @@ public class Product implements Serializable {
 
 	private Integer reorderpoint;
 
-	private Integer rowguid;
+	//private Integer rowguid;
 
 	private Integer safetystocklevel;
 
@@ -213,9 +213,9 @@ public class Product implements Serializable {
 		return this.reorderpoint;
 	}
 
-	public Integer getRowguid() {
-		return this.rowguid;
-	}
+//	public Integer getRowguid() {
+//		return this.rowguid;
+//	}
 
 	public Integer getSafetystocklevel() {
 		return this.safetystocklevel;
@@ -331,9 +331,9 @@ public class Product implements Serializable {
 		this.reorderpoint = reorderpoint;
 	}
 
-	public void setRowguid(Integer rowguid) {
-		this.rowguid = rowguid;
-	}
+//	public void setRowguid(Integer rowguid) {
+//		this.rowguid = rowguid;
+//	}
 
 	public void setSafetystocklevel(Integer safetystocklevel) {
 		this.safetystocklevel = safetystocklevel;

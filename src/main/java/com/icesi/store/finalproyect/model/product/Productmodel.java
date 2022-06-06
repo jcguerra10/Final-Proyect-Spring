@@ -36,7 +36,7 @@ public class Productmodel implements Serializable {
 
 	private String name;
 
-	private Integer rowguid;
+	//private Integer rowguid;
 
 	@JsonIgnore// bi-directional many-to-one association to Product
 	@OneToMany(mappedBy = "productmodel")
@@ -80,9 +80,9 @@ public class Productmodel implements Serializable {
 		return this.products;
 	}
 
-	public Integer getRowguid() {
-		return this.rowguid;
-	}
+//	public Integer getRowguid() {
+	//	return this.rowguid;
+	//}
 
 	public Product removeProduct(Product product) {
 		getProducts().remove(product);
@@ -115,8 +115,8 @@ public class Productmodel implements Serializable {
 		this.products = products;
 	}
 
-	public void setRowguid(Integer rowguid) {
-		this.rowguid = rowguid;
-	}
+	//public void setRowguid(Integer rowguid) {
+	//	this.rowguid = rowguid;
+	//}
 
 }

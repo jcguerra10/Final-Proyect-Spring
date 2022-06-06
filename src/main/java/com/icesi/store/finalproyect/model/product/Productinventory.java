@@ -46,12 +46,12 @@ public class Productinventory implements Serializable {
 
 	// bi-directional many-to-one association to Location
 	@ManyToOne
-	@JoinColumn(name = "locationid", insertable = false, updatable = false)
+	@JoinColumn(name = "locationid")
 	private Location location;
 
 	// bi-directional many-to-one association to Product
 	@ManyToOne
-	@JoinColumn(name = "productid", insertable = false, updatable = false)
+	@JoinColumn(name = "productid")
 	private Product product;
 
 	public Productinventory() {
