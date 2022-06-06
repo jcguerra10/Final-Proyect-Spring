@@ -6,7 +6,7 @@ import com.icesi.store.finalproyect.model.product.Productsubcategory;
 import java.util.Optional;
 
 public interface ProductsubcategoryService {
-    void saveProductsubcategory(Productsubcategory ps);
+    void saveProductsubcategory(Productsubcategory ps, int i);
     void editProductsubcategory(Productsubcategory ps, Integer i);
     public Iterable<Productsubcategory> findAll();
     public Optional<Productsubcategory> findById(Integer id);

@@ -2,7 +2,9 @@ package com.icesi.store.finalproyect.services.implementation;
 
 import java.util.Optional;
 
+import com.icesi.store.finalproyect.dao.ProductcategoryDao;
 import com.icesi.store.finalproyect.dao.ProductsubcategoryDao;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productsubcategory;
 import com.icesi.store.finalproyect.services.interfaces.ProductsubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductsubcategoryImp implements ProductsubcategoryService {
 @Autowired
 private ProductsubcategoryDao dao;
+
+@Autowired
+private ProductcategoryDao daoCategory;
+
 	@Transactional
 	@Override
-	public void saveProductsubcategory(Productsubcategory pc) {
+	public void saveProductsubcategory(Productsubcategory pc, int i) {
 		if(pc == null)
 			throw new NullPointerException("Null Object");
+
+		Productcategory pca = daoCategory.findById(i).get();
+		pc.setProductcategory(pca);
 		dao.save(pc);
 	}
 
