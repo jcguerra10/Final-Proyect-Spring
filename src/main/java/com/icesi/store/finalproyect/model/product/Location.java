@@ -41,10 +41,6 @@ public class Location implements Serializable {
 	@OneToMany(mappedBy = "location")
 	private List<Productinventory> productinventories;
 
-	// bi-directional many-to-one association to Workorderrouting
-	@OneToMany(mappedBy = "location")
-	private List<Workorderrouting> workorderroutings;
-
 	public Location() {
 	}
 
@@ -55,12 +51,6 @@ public class Location implements Serializable {
 		return productinventory;
 	}
 
-	public Workorderrouting addWorkorderrouting(Workorderrouting workorderrouting) {
-		getWorkorderroutings().add(workorderrouting);
-		workorderrouting.setLocation(this);
-
-		return workorderrouting;
-	}
 
 	public BigDecimal getAvailability() {
 		return this.availability;
@@ -86,10 +76,6 @@ public class Location implements Serializable {
 		return this.productinventories;
 	}
 
-	public List<Workorderrouting> getWorkorderroutings() {
-		return this.workorderroutings;
-	}
-
 	public Productinventory removeProductinventory(Productinventory productinventory) {
 		getProductinventories().remove(productinventory);
 		productinventory.setLocation(null);
@@ -97,12 +83,6 @@ public class Location implements Serializable {
 		return productinventory;
 	}
 
-	public Workorderrouting removeWorkorderrouting(Workorderrouting workorderrouting) {
-		getWorkorderroutings().remove(workorderrouting);
-		workorderrouting.setLocation(null);
-
-		return workorderrouting;
-	}
 
 	public void setAvailability(BigDecimal availability) {
 		this.availability = availability;
@@ -126,10 +106,6 @@ public class Location implements Serializable {
 
 	public void setProductinventories(List<Productinventory> productinventories) {
 		this.productinventories = productinventories;
-	}
-
-	public void setWorkorderroutings(List<Workorderrouting> workorderroutings) {
-		this.workorderroutings = workorderroutings;
 	}
 
 }

@@ -41,13 +41,6 @@ public class Productmodel implements Serializable {
 	private List<Product> products;
 
 	// bi-directional many-to-one association to Productmodelillustration
-	@OneToMany(mappedBy = "productmodel")
-	private List<Productmodelillustration> productmodelillustrations;
-
-	// bi-directional many-to-one association to
-	// Productmodelproductdescriptionculture
-	@OneToMany(mappedBy = "productmodel")
-	private List<Productmodelproductdescriptionculture> productmodelproductdescriptioncultures;
 
 	public Productmodel() {
 	}
@@ -59,20 +52,6 @@ public class Productmodel implements Serializable {
 		return product;
 	}
 
-	public Productmodelillustration addProductmodelillustration(Productmodelillustration productmodelillustration) {
-		getProductmodelillustrations().add(productmodelillustration);
-		productmodelillustration.setProductmodel(this);
-
-		return productmodelillustration;
-	}
-
-	public Productmodelproductdescriptionculture addProductmodelproductdescriptionculture(
-			Productmodelproductdescriptionculture productmodelproductdescriptionculture) {
-		getProductmodelproductdescriptioncultures().add(productmodelproductdescriptionculture);
-		productmodelproductdescriptionculture.setProductmodel(this);
-
-		return productmodelproductdescriptionculture;
-	}
 
 	public String getCatalogdescription() {
 		return this.catalogdescription;
@@ -94,13 +73,6 @@ public class Productmodel implements Serializable {
 		return this.productmodelid;
 	}
 
-	public List<Productmodelillustration> getProductmodelillustrations() {
-		return this.productmodelillustrations;
-	}
-
-	public List<Productmodelproductdescriptionculture> getProductmodelproductdescriptioncultures() {
-		return this.productmodelproductdescriptioncultures;
-	}
 
 	public List<Product> getProducts() {
 		return this.products;
@@ -115,21 +87,6 @@ public class Productmodel implements Serializable {
 		product.setProductmodel(null);
 
 		return product;
-	}
-
-	public Productmodelillustration removeProductmodelillustration(Productmodelillustration productmodelillustration) {
-		getProductmodelillustrations().remove(productmodelillustration);
-		productmodelillustration.setProductmodel(null);
-
-		return productmodelillustration;
-	}
-
-	public Productmodelproductdescriptionculture removeProductmodelproductdescriptionculture(
-			Productmodelproductdescriptionculture productmodelproductdescriptionculture) {
-		getProductmodelproductdescriptioncultures().remove(productmodelproductdescriptionculture);
-		productmodelproductdescriptionculture.setProductmodel(null);
-
-		return productmodelproductdescriptionculture;
 	}
 
 	public void setCatalogdescription(String catalogdescription) {
@@ -150,15 +107,6 @@ public class Productmodel implements Serializable {
 
 	public void setProductmodelid(Integer productmodelid) {
 		this.productmodelid = productmodelid;
-	}
-
-	public void setProductmodelillustrations(List<Productmodelillustration> productmodelillustrations) {
-		this.productmodelillustrations = productmodelillustrations;
-	}
-
-	public void setProductmodelproductdescriptioncultures(
-			List<Productmodelproductdescriptionculture> productmodelproductdescriptioncultures) {
-		this.productmodelproductdescriptioncultures = productmodelproductdescriptioncultures;
 	}
 
 	public void setProducts(List<Product> products) {
