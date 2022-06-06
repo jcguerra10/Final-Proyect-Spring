@@ -1,5 +1,7 @@
 package com.icesi.store.finalproyect.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -44,10 +46,12 @@ public class Productinventory implements Serializable {
 
 	// bi-directional many-to-one association to Location
 	@ManyToOne
+	@JoinColumn(name = "locationid", insertable = false, updatable = false)
 	private Location location;
 
 	// bi-directional many-to-one association to Product
 	@ManyToOne
+	@JoinColumn(name = "productid", insertable = false, updatable = false)
 	private Product product;
 
 	public Productinventory() {

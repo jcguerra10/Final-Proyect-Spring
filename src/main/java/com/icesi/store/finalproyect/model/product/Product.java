@@ -21,6 +21,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -109,10 +110,12 @@ public class Product implements Serializable {
 
 
 	// bi-directional many-to-one association to Productcosthistory
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<Productcosthistory> productcosthistories;
 
 	// bi-directional many-to-one association to Productdocument
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<Productinventory> productinventories;
 
@@ -352,5 +355,9 @@ public class Product implements Serializable {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+
+	public void setWeight(BigDecimal weight) {
+		this.weight=weight;
 	}
 }

@@ -22,7 +22,7 @@ public class ClientController {
     BusinessDelegate delegate;
 
 
-    @GetMapping()
+    @GetMapping("")
     public String showClients(Model model) {
         model.addAttribute("clients", delegate.showClients());
         return "/client/index";

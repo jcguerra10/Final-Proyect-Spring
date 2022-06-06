@@ -29,14 +29,14 @@ public class HistoricCostController {
         return "/historicCosts/index";
     }
 
-    @GetMapping("/add/")
+    @GetMapping("/add")
     public String productAddScreen(Model model) {
         model.addAttribute(new Productcosthistory());
         model.addAttribute("products", delegate.showProductList());
         return "/historiccosts/add";
     }
 
-    @PostMapping("/add/")
+    @PostMapping("/add")
     public String productAdd(@Valid @ModelAttribute Productcosthistory productcosthistory, BindingResult bindingResult,
                              Model model, @RequestParam(value = "action", required = true) String action) {
 

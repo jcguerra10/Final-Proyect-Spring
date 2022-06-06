@@ -24,20 +24,20 @@ public class ProductController {
 	@Autowired
 	BusinessDelegateImpl delegate;
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String index(Model model) {
 		model.addAttribute("products", delegate.showProductList());
 		return "/products/index";
 	}
 
-	@GetMapping("/add/")
+	@GetMapping("/add")
 	public String productAddScreen(Model model) {
 		model.addAttribute(new Product());
 		model.addAttribute("subcategories", delegate.showProductsubcategoryList());
 		return "/products/add";
 	}
 
-	@PostMapping("/add/")
+	@PostMapping("/add")
 	public String productAdd(@Valid @ModelAttribute Product product, BindingResult bindingResult, Model model,
 			@RequestParam(value = "action", required = true) String action, String startdate, String enddate) {
 

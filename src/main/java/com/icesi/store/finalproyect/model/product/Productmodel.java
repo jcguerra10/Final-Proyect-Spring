@@ -1,5 +1,7 @@
 package com.icesi.store.finalproyect.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -36,7 +38,7 @@ public class Productmodel implements Serializable {
 
 	private Integer rowguid;
 
-	// bi-directional many-to-one association to Product
+	@JsonIgnore// bi-directional many-to-one association to Product
 	@OneToMany(mappedBy = "productmodel")
 	private List<Product> products;
 

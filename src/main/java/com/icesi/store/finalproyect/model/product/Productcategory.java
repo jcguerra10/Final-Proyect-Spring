@@ -1,5 +1,7 @@
 package com.icesi.store.finalproyect.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -33,7 +35,7 @@ public class Productcategory implements Serializable {
 
 	private Integer rowguid;
 
-	// bi-directional many-to-one association to Productsubcategory
+	@JsonIgnore// bi-directional many-to-one association to Productsubcategory
 	@OneToMany(mappedBy = "productcategory")
 	private List<Productsubcategory> productsubcategories;
 

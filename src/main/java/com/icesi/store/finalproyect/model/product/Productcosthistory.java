@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
@@ -49,7 +50,7 @@ public class Productcosthistory implements Serializable {
 
 	// bi-directional many-to-one association to Product
 	@ManyToOne
-	@JoinColumn(name = "productid")
+	@JoinColumn(name = "productid", insertable = false, updatable = false)
 	private Product product;
 
 	public Productcosthistory() {

@@ -27,13 +27,13 @@ public class LocationController {
 		return "/locations/index";
 	}
 
-	@GetMapping("/locations/add/")
+	@GetMapping("/add")
 	public String locationAddScreen(Model model) {
 		model.addAttribute(new Location());
 		return "/locations/add";
 	}
 
-	@PostMapping("/locations/add")
+	@PostMapping("/add")
 	private String locationAdd(@Valid @ModelAttribute Location location, BindingResult bindingResult, Model model,
 			@RequestParam(value = "action", required = true) String action) {
 
@@ -50,14 +50,14 @@ public class LocationController {
 		return ret;
 	}
 	
-	@GetMapping("/locations/edit/{id}")
+	@GetMapping("/edit/{id}")
 	public String editLocationScreen(@PathVariable("id") Integer id, Model model) {
 		Location find = delegate.getLocation(id);
 
 		model.addAttribute("location", find);
 		return "locations/edit";
 	}
-	@PostMapping("/locations/edit/{id}")
+	@PostMapping("/edit/{id}")
 	public String editLocation(@Valid @ModelAttribute Location location, BindingResult bindingResult, Model model,
 			@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) String action) {
 		

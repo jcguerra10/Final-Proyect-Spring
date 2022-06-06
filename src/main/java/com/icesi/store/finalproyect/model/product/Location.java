@@ -1,5 +1,7 @@
 package com.icesi.store.finalproyect.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -37,7 +39,7 @@ public class Location implements Serializable {
 	@Size(min = 1, message = "Al menos tiene que tener 1 caracter")
 	private String name;
 
-	// bi-directional many-to-one association to Productinventory
+	@JsonIgnore// bi-directional many-to-one association to Productinventory
 	@OneToMany(mappedBy = "location")
 	private List<Productinventory> productinventories;
 

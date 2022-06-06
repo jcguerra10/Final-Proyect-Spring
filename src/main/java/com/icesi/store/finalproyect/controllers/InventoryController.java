@@ -36,7 +36,7 @@ public class InventoryController {
 		return "/inventoryproduct/index";
 	}
 
-	@GetMapping("/add/")
+	@GetMapping("/add")
 	public String addInventoryScreen(Model model) {
 		model.addAttribute("productinventory", new Productinventory());
 		model.addAttribute("products", delegate.showProductList());
@@ -44,7 +44,7 @@ public class InventoryController {
 		return "/inventoryproduct/add";
 	}
 
-	@PostMapping("/add/")
+	@PostMapping("/add")
 	public String addInventory(@Valid @ModelAttribute Productinventory productInventory, BindingResult bindingResult,
 			Model model, @RequestParam(value = "action", required = true) String action, Integer quantity) {
 		String ret = "redirect:/inventoryproduct/";
@@ -66,7 +66,7 @@ public class InventoryController {
 
 		Productinventory pInventory = delegate.getProductInventory(id);
 
-		model.addAttribute("inventoryproduct", pInventory);
+		model.addAttribute("productinventory", pInventory);
 		model.addAttribute("products", delegate.showProductList());
 		model.addAttribute("locations", delegate.showLocations());
 		return "/inventoryproduct/edit";

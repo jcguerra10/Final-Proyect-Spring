@@ -19,7 +19,7 @@ public class StoreController {
     @Autowired
     BusinessDelegate delegate;
 
-    @GetMapping()
+    @GetMapping("")
     public String showStore(Model model) {
         model.addAttribute("stores", delegate.showStores());
         return "/store/index";
