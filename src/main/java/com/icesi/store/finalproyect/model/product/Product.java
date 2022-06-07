@@ -7,16 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -110,6 +101,17 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "productsubcategoryid", columnDefinition = "productsubcategoryid")
 	private Productsubcategory productsubcategory;
+
+	public Integer getProductsubcategoryid2() {
+		return productsubcategoryid2;
+	}
+
+	public void setProductsubcategoryid2(Integer productsubcategoryid2) {
+		this.productsubcategoryid2 = productsubcategoryid2;
+	}
+
+	@Transient
+	private Integer productsubcategoryid2;
 
 	// bi-directional many-to-one association to Productcosthistory
 	@JsonIgnore
