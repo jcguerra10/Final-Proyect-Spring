@@ -21,7 +21,7 @@ public class ProductcosthistoryServiceImp implements ProductcosthistoryService {
 	public void saveProductcosthistory(Productcosthistory pch) {
 		if (pch == null) 
 			throw new NullPointerException();
-		if (pch.getProduct() == null)
+		if (pch.getProductCostid2() == null)
 			throw new IllegalArgumentException("Product Not Exist");
 		if (pch.getEnddate() == null)
 			throw new IllegalArgumentException("EndDate Null");
@@ -42,7 +42,7 @@ public class ProductcosthistoryServiceImp implements ProductcosthistoryService {
 		Productcosthistory oppch = op.get();
 		if (pch == null) 
 			throw new NullPointerException();
-		if (pch.getProduct() == null)
+		if (pch.getProductCostid2() == null)
 			throw new IllegalArgumentException("Product Not Exist");
 		if (pch.getEnddate() == null)
 			throw new IllegalArgumentException("EndDate Null");

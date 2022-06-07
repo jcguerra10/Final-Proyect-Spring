@@ -5,15 +5,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -52,6 +46,18 @@ public class Productcosthistory implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "productid")
 	private Product product;
+
+	@NotNull(message = "Can´t be null")
+	@Transient
+	private Integer productCostid2;
+
+	public Integer getProductCostid2() {
+		return productCostid2;
+	}
+
+	public void setProductCostid2(Integer productCostid2) {
+		this.productCostid2 = productCostid2;
+	}
 
 	public Productcosthistory() {
 	}

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
+import com.icesi.store.finalproyect.model.product.Location;
 import com.icesi.store.finalproyect.model.product.Product;
 import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productinventory;
@@ -40,6 +41,10 @@ public class ProductinventoryDaoImp implements Dao<Productinventory> {
 
 	@Override
 	public Productcategory save(Productinventory aut) {
+		Product psc = Optional.ofNullable(entityManager.find(Product.class, aut.getProductinvid2())).get();
+		aut.setProduct(psc);
+		Location loc = Optional.ofNullable(entityManager.find(Location.class, aut.getLocationinvid2())).get();
+		aut.setLocation(loc);
 		executeInsideTransaction(entityManager -> entityManager.persist(aut));
         return null;
     }

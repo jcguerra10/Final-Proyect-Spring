@@ -31,6 +31,8 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_PRODUCTID_GENERATOR")
 	private Integer productid;
 
+
+
 	@Column(name = "class")
 	private String class_;
 

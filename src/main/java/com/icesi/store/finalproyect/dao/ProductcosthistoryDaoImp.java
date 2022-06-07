@@ -13,6 +13,7 @@ import com.icesi.store.finalproyect.dao.interfaces.Dao;
 import com.icesi.store.finalproyect.model.product.Product;
 import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productcosthistory;
+import com.icesi.store.finalproyect.model.product.Productsubcategory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,8 @@ public class ProductcosthistoryDaoImp implements Dao<Productcosthistory> {
 	@Override
 	@Transactional
 	public Productcategory save(Productcosthistory aut) {
+		Product psc = Optional.ofNullable(entityManager.find(Product.class, aut.getProductCostid2())).get();
+		aut.setProduct(psc);
 		entityManager.persist(aut);
         return null;
     }

@@ -5,15 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -49,10 +41,34 @@ public class Productinventory implements Serializable {
 	@JoinColumn(name = "locationid")
 	private Location location;
 
+	@NotNull(message = "Can´t be null")
+	@Transient
+	private Integer locationinvid2;
+
 	// bi-directional many-to-one association to Product
 	@ManyToOne
 	@JoinColumn(name = "productid")
 	private Product product;
+
+	@NotNull(message = "Can´t be null")
+	@Transient
+	private Integer productinvid2;
+
+	public Integer getProductinvid2() {
+		return productinvid2;
+	}
+
+	public void setProductinvid2(Integer productinvid2) {
+		this.productinvid2 = productinvid2;
+	}
+
+	public Integer getLocationinvid2() {
+		return locationinvid2;
+	}
+
+	public void setLocationinvid2(Integer locationinvid2) {
+		this.locationinvid2 = locationinvid2;
+	}
 
 	public Productinventory() {
 	}

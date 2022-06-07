@@ -20,7 +20,7 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
 	public void saveProductInventory(Productinventory proInventory) {
 		if (proInventory == null)
 			throw new NullPointerException("ObjectNull");
-		if (proInventory.getLocation() == null) 
+		if (proInventory.getLocationinvid2() == null)
 			throw new NullPointerException("location");
 		if (proInventory.getQuantity() == null)
 			throw new IllegalArgumentException("Quantity Null");
@@ -36,7 +36,7 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
 		Productinventory opLoc = op.get();
 		if (proInventory == null)
 			throw new NullPointerException("No Object");
-		if (proInventory.getLocation() == null) 
+		if (proInventory.getLocationinvid2() == null)
 			throw new NullPointerException("Location Null");
 		if (proInventory.getQuantity() == null)
 			throw new IllegalArgumentException("Quantity Null");

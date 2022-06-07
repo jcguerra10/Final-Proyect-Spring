@@ -7,13 +7,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -29,6 +24,9 @@ public class Location implements Serializable {
 	@SequenceGenerator(name = "LOCATION_LOCATIONID_GENERATOR", allocationSize = 1, sequenceName = "LOCATION_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOCATION_LOCATIONID_GENERATOR")
 	private Integer locationid;
+
+
+
 
 	private BigDecimal availability;
 
