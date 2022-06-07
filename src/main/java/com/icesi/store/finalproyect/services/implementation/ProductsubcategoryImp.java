@@ -21,7 +21,7 @@ private ProductcategoryDao daoCategory;
 
 	@Transactional
 	@Override
-	public void saveProductsubcategory(Productsubcategory pc, int i) {
+	public void saveProductsubcategory(Productsubcategory pc, Integer i) {
 		if(pc == null)
 			throw new NullPointerException("Null Object");
 

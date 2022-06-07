@@ -17,9 +17,9 @@ public class ProductsubcategoryRestController {
     public Iterable<Productsubcategory> showProductsubcategoryList(){
         return productsubcategoryService.findAll();
     }
-    @PostMapping("/productsubcategoryRest/addsubcategory/")
-    public void addProduct(@RequestBody Productsubcategory cli) {
+    @PostMapping("/productsubcategoryRest/addsubcategory/{id}")
+    public void addProductsubcategory(@RequestBody Productsubcategory cli ,@PathVariable("id") Integer id) {
         System.out.println("-----"+cli);
-        productsubcategoryService.saveProductsubcategory(cli);
+        productsubcategoryService.saveProductsubcategory(cli,id);
     }
 }

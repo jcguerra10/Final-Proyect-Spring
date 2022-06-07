@@ -1,5 +1,6 @@
 package com.icesi.store.finalproyect.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Store {
     @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "store", orphanRemoval = true)
     private List<Client> clients = new ArrayList<>();
 

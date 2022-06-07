@@ -1,5 +1,6 @@
 package com.icesi.store.finalproyect.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
