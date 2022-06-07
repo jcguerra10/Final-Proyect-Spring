@@ -36,15 +36,12 @@ public class ProductServiceImp implements ProductService {
 		if(pro == null)
 			throw new NullPointerException();
 		
-		if(pro.getProductsubcategory() == null)
+		if(pro.getProductsubcategoryid2() == null)
 			throw new NullPointerException("Not have Sub category");
-		
-		if(pro.getProductsubcategory().getProductcategory() == null)
-			throw new NullPointerException("Not have Category");
-		
+
 		if(pro.getProductnumber() == null)
 			throw new IllegalArgumentException("ProductNumber Null");
-		
+
 		if(pro.getProductnumber().equals(""))
 			throw new IllegalArgumentException("Not Have Product Number");
 		
@@ -78,26 +75,33 @@ public class ProductServiceImp implements ProductService {
 		Product editPro = opPro.get();
 		if(pro == null)
 			throw new NullPointerException();
-		if(pro.getProductsubcategory() == null)
+
+		if(pro.getProductsubcategoryid2() == null)
 			throw new NullPointerException("Not have Sub category");
-		if(pro.getProductsubcategory().getProductcategory() == null)
-			throw new NullPointerException("Not have Category");
+
 		if(pro.getProductnumber() == null)
 			throw new IllegalArgumentException("ProductNumber Null");
+
 		if(pro.getProductnumber().equals(""))
 			throw new IllegalArgumentException("Not Have Product Number");
+
 		if(pro.getSellstartdate() == null)
 			throw new IllegalArgumentException("startDate Null");
+
 		if(pro.getSellenddate() == null)
 			throw new IllegalArgumentException("endDate Null");
+
 		if(pro.getSellstartdate().compareTo(pro.getSellenddate()) > 0)
 			throw new IllegalArgumentException("Start Date Greater than End Date");
+
 		if(pro.getSize() == null)
 			throw new IllegalArgumentException("Size null");
 		if(pro.getSize().intValue() <= 0)
 			throw new IllegalArgumentException("Size is not Greater than 0");
+
 		if(pro.getWeight() == null)
 			throw new IllegalArgumentException("Weight null");
+
 		if(pro.getWeight().doubleValue() <= 0)
 			throw new IllegalArgumentException("Weight is not Greater than 0");
 		editPro.setProductsubcategory(pro.getProductsubcategory());

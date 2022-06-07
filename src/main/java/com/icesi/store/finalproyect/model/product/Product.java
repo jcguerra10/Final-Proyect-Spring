@@ -72,10 +72,7 @@ public class Product implements Serializable {
 
 	@Positive
 	private BigDecimal size;
-
-	@NotNull
-	@Positive
-	@Min(value = 0)
+	
 	private BigDecimal standardcost;
 
 	private String style;
@@ -97,7 +94,6 @@ public class Product implements Serializable {
 	private Productmodel productmodel;
 
 	// bi-directional many-to-one association to Productsubcategory
-	@NotNull(message = "can´t be null")
 	@ManyToOne
 	@JoinColumn(name = "productsubcategoryid", columnDefinition = "productsubcategoryid")
 	private Productsubcategory productsubcategory;
@@ -110,6 +106,7 @@ public class Product implements Serializable {
 		this.productsubcategoryid2 = productsubcategoryid2;
 	}
 
+	@NotNull(message = "Can´t be null")
 	@Transient
 	private Integer productsubcategoryid2;
 
