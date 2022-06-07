@@ -1,6 +1,5 @@
 package com.icesi.store.finalproyect.dao;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -11,6 +10,7 @@ import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
 import com.icesi.store.finalproyect.model.product.Product;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productinventory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -39,9 +39,10 @@ public class ProductinventoryDaoImp implements Dao<Productinventory> {
 	}
 
 	@Override
-	public void save(Productinventory aut) {
+	public Productcategory save(Productinventory aut) {
 		executeInsideTransaction(entityManager -> entityManager.persist(aut));
-	}
+        return null;
+    }
 
 	@Override
 	public void update(Productinventory aut) {

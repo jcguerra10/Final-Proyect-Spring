@@ -32,7 +32,7 @@ public class ProductController {
 
 	@GetMapping("/add/")
 	public String productAddScreen(Model model) {
-		model.addAttribute(new Product());
+		model.addAttribute("product", new Product());
 		model.addAttribute("subcategories", delegate.showProductsubcategoryList());
 		return "/products/add";
 	}
@@ -43,13 +43,17 @@ public class ProductController {
 
 		String ret = "redirect:/products/";
 
+
+
 		if (!action.equals("Cancel")) {
 			if (!bindingResult.hasErrors()) {
-
+				System.out.println("---");
 				delegate.addProduct(product);
 
 			} else {
+				System.out.println(">>>");
 				ret = "/products/add";
+				model.addAttribute("subcategories", delegate.showProductsubcategoryList());
 			}
 		}
 		return ret;
@@ -87,8 +91,9 @@ public class ProductController {
 		psc.setName(subcategory);
 
 
-		delegate.addProductcategory(pc);
-		delegate.addProductsubcategory(psc,pc.getProductcategoryid());
+		Productcategory ret = delegate.addProductcategory(pc);
+		psc.setProductcategory(ret);
+		delegate.addProductsubcategory(psc, 0);
 
 		return "redirect:/products/add/";
 	}

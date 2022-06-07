@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productsubcategory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -37,9 +38,10 @@ public class ProductsubcategoryDao implements Dao<Productsubcategory> {
 	}
 
 	@Override
-	public void save(Productsubcategory aut) {
+	public Productcategory save(Productsubcategory aut) {
 		entityManager.persist(aut);
-	}
+        return null;
+    }
 
 	@Override
 	public void update(Productsubcategory aut) {

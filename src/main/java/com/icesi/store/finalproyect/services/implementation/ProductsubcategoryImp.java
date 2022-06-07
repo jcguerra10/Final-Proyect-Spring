@@ -21,12 +21,9 @@ private ProductcategoryDao daoCategory;
 
 	@Transactional
 	@Override
-	public void saveProductsubcategory(Productsubcategory pc, Integer i) {
+	public void saveProductsubcategory(Productsubcategory pc) {
 		if(pc == null)
 			throw new NullPointerException("Null Object");
-
-		Productcategory pca = daoCategory.findById(i).get();
-		pc.setProductcategory(pca);
 		dao.save(pc);
 	}
 

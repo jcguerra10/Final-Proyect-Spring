@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
 import com.icesi.store.finalproyect.model.product.Location;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
@@ -37,9 +38,10 @@ public class LocationDao implements Dao<Location> {
 	}
 
 	@Override
-	public void save(Location aut) {
+	public Productcategory save(Location aut) {
 		entityManager.persist(aut);
-	}
+        return null;
+    }
 
 	@Override
 	public void update(Location aut) {

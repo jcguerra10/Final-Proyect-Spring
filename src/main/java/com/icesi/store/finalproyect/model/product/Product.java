@@ -106,9 +106,9 @@ public class Product implements Serializable {
 	private Productmodel productmodel;
 
 	// bi-directional many-to-one association to Productsubcategory
-	@NotNull
+	@NotNull(message = "can´t be null")
 	@ManyToOne
-	@JoinColumn(name = "productsubcategoryid")
+	@JoinColumn(name = "productsubcategoryid", columnDefinition = "productsubcategoryid")
 	private Productsubcategory productsubcategory;
 
 	// bi-directional many-to-one association to Productcosthistory

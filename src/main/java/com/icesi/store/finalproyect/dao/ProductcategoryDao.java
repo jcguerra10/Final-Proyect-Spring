@@ -39,8 +39,9 @@ public class ProductcategoryDao implements Dao<Productcategory> {
 
     @Override
     @Transactional
-    public void save(Productcategory aut) {
+    public Productcategory save(Productcategory aut) {
         entityManager.persist(aut);
+        return aut;
     }
 
     @Override

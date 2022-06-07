@@ -18,10 +18,10 @@ public class ProductcategoryServiceImp implements ProductcategoryService {
 
 	@Transactional
 	@Override
-	public void saveProductcategory(Productcategory pc) {
+	public Productcategory saveProductcategory(Productcategory pc) {
 		if(pc == null)
 			throw new NullPointerException("Null Object");
-		pcRepository.save(pc);
+		return pcRepository.save(pc);
 	}
 
 	@Transactional

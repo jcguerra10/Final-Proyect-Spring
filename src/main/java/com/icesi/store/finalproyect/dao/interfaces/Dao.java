@@ -3,6 +3,7 @@ package com.icesi.store.finalproyect.dao.interfaces;
 import java.util.List;
 import java.util.Optional;
 
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface Dao<T> {
@@ -14,7 +15,7 @@ public interface Dao<T> {
 	List<T> getAll();
 
 	@Transactional
-	void save(T aut);
+    Productcategory save(T aut);
 
 	@Transactional
 	void update(T aut);

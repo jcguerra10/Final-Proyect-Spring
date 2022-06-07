@@ -7,7 +7,7 @@ import com.icesi.store.finalproyect.model.product.UserApp;
 public interface UserService {
 	public void save(UserApp user);
 
-	public Optional<UserApp> findById(int id);
+	public Optional<UserApp> findById(Long id);
 
 	public Iterable<UserApp> findAll();
 	

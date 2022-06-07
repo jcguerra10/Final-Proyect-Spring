@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
 import com.icesi.store.finalproyect.model.product.Product;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import com.icesi.store.finalproyect.model.product.Productcosthistory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -40,9 +41,10 @@ public class ProductcosthistoryDaoImp implements Dao<Productcosthistory> {
 
 	@Override
 	@Transactional
-	public void save(Productcosthistory aut) {
+	public Productcategory save(Productcosthistory aut) {
 		entityManager.persist(aut);
-	}
+        return null;
+    }
 
 	@Override
 	public void update(Productcosthistory aut) {

@@ -110,6 +110,9 @@ public class BusinessDelegateImpl implements BusinessDelegate {
 	public List<Productsubcategory> showProductsubcategoryList() {
 		Productsubcategory[] productsubcategoryarray = template.getForObject(baseurl + "/productsubcategoryRest/list",
 				Productsubcategory[].class);
+		for (int i = 0; i < productsubcategoryarray.length; i++) {
+			System.out.println(productsubcategoryarray[i]);
+		}
 		return Arrays.asList(productsubcategoryarray);
 	}
 
@@ -118,7 +121,8 @@ public class BusinessDelegateImpl implements BusinessDelegate {
 		HttpEntity<Productsubcategory> request = new HttpEntity<>(p);
 		//log.info("aqui entro");
 		System.out.println("----");
-		return template.postForObject(baseurl + "/productsubcategoryRest/addsubcategory/{id}", request, Productsubcategory.class);
+		System.out.println(id);
+		return template.postForObject(baseurl + "/productsubcategoryRest/addsubcategory/", request, Productsubcategory.class);
 	}
 
 	@Override
@@ -133,7 +137,6 @@ public class BusinessDelegateImpl implements BusinessDelegate {
 		HttpEntity<Productcategory> request = new HttpEntity<>(p);
 		//log.info("aqui entro");
 		return template.postForObject(baseurl + "/productcategoryRest/addcategory/", request, Productcategory.class);
-
 	}
 
 	@Override

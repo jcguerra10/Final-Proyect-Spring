@@ -19,8 +19,8 @@ public class ProductcategoryRestController {
     }
 
     @PostMapping("/productcategoryRest/addcategory/")
-    public void addProduct(@RequestBody Productcategory cli) {
-        productcategoryService.saveProductcategory(cli);
+    public Productcategory addProduct(@RequestBody Productcategory cli) {
+        return productcategoryService.saveProductcategory(cli);
     }
 }
 

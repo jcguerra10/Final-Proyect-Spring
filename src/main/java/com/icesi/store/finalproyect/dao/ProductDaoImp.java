@@ -1,11 +1,9 @@
 package com.icesi.store.finalproyect.dao;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +11,7 @@ import javax.persistence.Query;
 
 import com.icesi.store.finalproyect.dao.interfaces.Dao;
 import com.icesi.store.finalproyect.model.product.Product;
+import com.icesi.store.finalproyect.model.product.Productcategory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,9 +41,10 @@ public class ProductDaoImp implements Dao<Product> {
 
 	@Override
 	@Transactional
-	public void save(Product aut) {
+	public Productcategory save(Product aut) {
 		entityManager.persist(aut);
-	}
+        return null;
+    }
 
 	@Override
 	@Transactional

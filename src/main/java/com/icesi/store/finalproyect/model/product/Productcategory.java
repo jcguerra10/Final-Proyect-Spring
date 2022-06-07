@@ -35,7 +35,7 @@ public class Productcategory implements Serializable {
 
 	private Integer rowguid;
 
-	@JsonIgnore// bi-directional many-to-one association to Productsubcategory
+	@JsonIgnore
 	@OneToMany(mappedBy = "productcategory")
 	private List<Productsubcategory> productsubcategories;
 
