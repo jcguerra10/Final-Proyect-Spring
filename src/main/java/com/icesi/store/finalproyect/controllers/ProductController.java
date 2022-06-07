@@ -43,8 +43,6 @@ public class ProductController {
 
 		String ret = "redirect:/products/";
 
-
-
 		if (!action.equals("Cancel")) {
 			if (!bindingResult.hasErrors()) {
 				System.out.println("---");

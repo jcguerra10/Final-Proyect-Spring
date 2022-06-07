@@ -41,7 +41,8 @@
                         <div class="form-group">
                             <label>Sub Category</label> <select class="form-control" th:field="*{productsubcategory}">
                             <option th:each="g : ${subcategories}" th:value="${g.productsubcategoryid}"
-                                    th:text="${#strings.capitalize(g.name)}"></option>
+                                    th:text="${#strings.capitalize(g.name)}"
+                                    th:selected="${product.productsubcategory==g}"></option>
                         </select> <span th:if="${#fields.hasErrors('productsubcategory')}"
                                         th:errors="*{productsubcategory}" class="text-danger"></span>
                         </div>
