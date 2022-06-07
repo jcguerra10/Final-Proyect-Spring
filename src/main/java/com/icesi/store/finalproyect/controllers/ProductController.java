@@ -93,7 +93,7 @@ public class ProductController {
 
 		Productcategory ret = delegate.addProductcategory(pc);
 		psc.setProductcategory(ret);
-		delegate.addProductsubcategory(psc, 0);
+		delegate.addProductsubcategory(psc);
 
 		return "redirect:/products/add/";
 	}
