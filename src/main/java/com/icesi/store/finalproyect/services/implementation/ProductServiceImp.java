@@ -104,7 +104,9 @@ public class ProductServiceImp implements ProductService {
 
 		if(pro.getWeight().doubleValue() <= 0)
 			throw new IllegalArgumentException("Weight is not Greater than 0");
-		editPro.setProductsubcategory(pro.getProductsubcategory());
+		//editPro.setProductsubcategory(pro.getProductsubcategory());
+		editPro.setName(pro.getName());
+		editPro.setProductsubcategoryid2(pro.getProductsubcategoryid2());
 		editPro.setProductnumber(pro.getProductnumber());
 		editPro.setSellstartdate(pro.getSellstartdate());
 		editPro.setSellenddate(pro.getSellenddate());

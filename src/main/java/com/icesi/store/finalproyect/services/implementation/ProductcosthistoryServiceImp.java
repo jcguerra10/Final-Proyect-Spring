@@ -52,9 +52,10 @@ public class ProductcosthistoryServiceImp implements ProductcosthistoryService {
 			throw new IllegalArgumentException("Standar Cost Null");
 		if (pch.getStandardcost().intValue() < 0)
 			throw new IllegalArgumentException("Standar Cost");
-		oppch.setProduct(pch.getProduct());;
-		oppch.setEnddate(pch.getEnddate());;
-		oppch.setStandardcost(pch.getStandardcost());;
+		//oppch.setProduct(pch.getProduct());
+		oppch.setProductCostid2(pch.getProductCostid2());
+		oppch.setEnddate(pch.getEnddate());
+		oppch.setStandardcost(pch.getStandardcost());
 		dao.update(oppch);
 	}
 

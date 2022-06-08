@@ -52,6 +52,9 @@ public class ProductDaoImp implements Dao<Product> {
 	@Override
 	@Transactional
 	public void update(Product aut) {
+
+		Productsubcategory psc = Optional.ofNullable(entityManager.find(Productsubcategory.class, aut.getProductsubcategoryid2())).get();
+		aut.setProductsubcategory(psc);
 		entityManager.merge(aut);
 	}
 

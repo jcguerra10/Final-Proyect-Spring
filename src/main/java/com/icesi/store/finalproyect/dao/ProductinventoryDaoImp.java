@@ -51,6 +51,10 @@ public class ProductinventoryDaoImp implements Dao<Productinventory> {
 
 	@Override
 	public void update(Productinventory aut) {
+		Product psc = Optional.ofNullable(entityManager.find(Product.class, aut.getProductinvid2())).get();
+		aut.setProduct(psc);
+		Location loc = Optional.ofNullable(entityManager.find(Location.class, aut.getLocationinvid2())).get();
+		aut.setLocation(loc);
 		executeInsideTransaction(entityManager -> entityManager.merge(aut));
 	}
 

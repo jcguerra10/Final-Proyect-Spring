@@ -51,6 +51,8 @@ public class ProductcosthistoryDaoImp implements Dao<Productcosthistory> {
 
 	@Override
 	public void update(Productcosthistory aut) {
+		Product psc = Optional.ofNullable(entityManager.find(Product.class, aut.getProductCostid2())).get();
+		aut.setProduct(psc);
 		executeInsideTransaction(entityManager -> entityManager.merge(aut));
 	}
 

@@ -42,8 +42,9 @@ public class ProductInventoryServiceImp implements ProductInventoryService {
 			throw new IllegalArgumentException("Quantity Null");
 		if (proInventory.getQuantity() < 0)
 			throw new IllegalArgumentException("Quantity is not Greater than 0");
-		opLoc.setProduct(proInventory.getProduct());
-		opLoc.setLocation(proInventory.getLocation());
+		opLoc.setProductinvid2(proInventory.getProductinvid2());
+		opLoc.setLocationinvid2(proInventory.getLocationinvid2());
+
 		opLoc.setQuantity(proInventory.getQuantity());
 		dao.update(opLoc);
 	}
