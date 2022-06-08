@@ -1,9 +1,7 @@
 package com.icesi.store.finalproyect.controllers;
 
 import com.icesi.store.finalproyect.dao.ProductDaoImp;
-import com.icesi.store.finalproyect.services.implementation.ProductServiceImp;
-import com.icesi.store.finalproyect.services.interfaces.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.icesi.store.finalproyect.dao.ProductsubcategoryDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +14,24 @@ import java.util.List;
 public class QueriesShop {
 
     private final ProductDaoImp dao;
+    private final ProductsubcategoryDao daoSub;
 
-    public QueriesShop(ProductDaoImp dao) {
+    public QueriesShop(ProductDaoImp dao, ProductsubcategoryDao daoSub) {
         this.dao = dao;
+        this.daoSub = daoSub;
     }
 
     @GetMapping("/special1")
-    public String specialQuery1() {
-
-        return "";
+    public String specialQuery1(Integer subcategory, Model model) {
+        model.addAttribute("subcategories", daoSub.getAll());
+        if (subcategory != null) {
+            List<?> list = dao.specialQuery(subcategory);
+            model.addAttribute("querylist", list);
+            System.out.println(">>: " + list.size());
+            list.forEach(l ->
+                    System.out.println("->" + l));
+        }
+        return "/queries/product-between-dates";
     }
 
     @GetMapping("/special2")

@@ -83,16 +83,23 @@ public class ProductDaoImp implements Dao<Product> {
 	
 	public List<?> specialQuery1(LocalDate from, LocalDate to) {
 		return entityManager.createQuery("SELECT p FROM Product p, Location l, Productinventory pi, Productcosthistory pch "
-				+ "WHERE p.productid = pi.product.productid AND pi.location.locationid = l.locationid AND pch.product.productid = p.productid "
+				+ "WHERE p.productid = pi.product.productid AND pi.location.locationid = l.locationid AND pi.product.productid = p.productid AND pch.product.productid = p.productid "
 				+ "AND pch.startdate BETWEEN :from AND :to "
 				+ "AND pch.enddate BETWEEN :from AND :to "
 				+ "AND pi.quantity > 0 "
-				+ "GROUP BY l.locationid").setParameter("from", from).setParameter("to", to).getResultList();
+				+ "GROUP BY p.productid").setParameter("from", from).setParameter("to", to).getResultList();
 	}
 
 	public List<?> specialQuery2() {
 		return entityManager.createQuery("SELECT e FROM Product e "
 				+ "WHERE e.productcosthistories.size >= 2").getResultList();
+	}
+
+	public List<?> specialQuery(Integer subcategory) {
+		return entityManager.createQuery("SELECT e FROM Product e, Location l, Productinventory pi " +
+				"WHERE pi.product.productsubcategory.productsubcategoryid = :sid " +
+				"AND pi.product.productid = e.productid AND pi.location.locationid = l.locationid " +
+				"ORDER BY l.locationid").setParameter("sid", subcategory).getResultList();
 	}
 	
 }
