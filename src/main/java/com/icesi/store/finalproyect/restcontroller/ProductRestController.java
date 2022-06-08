@@ -40,7 +40,7 @@ public class ProductRestController {
 
     @PutMapping("/productsRest/edit/{id}")
     public void editProduct(@RequestBody Product product) {
-        productService.editProduct(product, product.getProductsubcategory().getProductcategory().getProductcategoryid());
+        productService.editProduct(product, product.getProductid());
     }
 
     @DeleteMapping("/productsRest/delete/{id}")

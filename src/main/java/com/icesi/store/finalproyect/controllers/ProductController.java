@@ -102,8 +102,7 @@ public class ProductController {
 	public String editProductScreen(@PathVariable("id") Integer id, Model model) {
 		Product find = delegate.getProduct(id);
 		model.addAttribute("product", find);
-		model.addAttribute("productcategories", delegate.showProductcategoryList());
-		model.addAttribute("productsubcategories", delegate.showProductsubcategoryList());
+		model.addAttribute("subcategories", delegate.showProductsubcategoryList());
 
 		return "/products/edit";
 	}
