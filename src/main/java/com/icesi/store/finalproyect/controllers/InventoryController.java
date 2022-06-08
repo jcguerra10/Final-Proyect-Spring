@@ -51,7 +51,7 @@ public class InventoryController {
 		
 		if (!action.equals("Cancel")) {
 			if (!bindingResult.hasErrors()) {
-				System.out.println(productInventory.getProduct().getName());
+				
 				delegate.addProductInventory(productInventory);
 			} else {
 				ret = "/inventoryproduct/add";				
