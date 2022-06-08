@@ -6,7 +6,9 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.icesi.store.finalproyect.businessdelegate.BusinessDelegate;
 import com.icesi.store.finalproyect.businessdelegate.BusinessDelegateImpl;
@@ -39,10 +41,12 @@ public class BusinessDelegateTest {
     @InjectMocks
     BusinessDelegateImpl delegate;
     Product pro;
+    Location loc;
     Productcategory pc;
     Productsubcategory psc;
+    Productcosthistory pch;
     Productinventory pi;
-    Location loc;
+
 
 
     @BeforeAll
@@ -75,18 +79,19 @@ public class BusinessDelegateTest {
 
             delegate= new BusinessDelegateImpl();
             delegate.setRestTemplate(restTemplate);
+
         }
 
         @Test
         void findAllProductTest() {
-            Product[] personList= new Product[4];
-            for (int i = 0; i < personList.length; i++) {
+            Product[] productList= new Product[4];
+            for (int i = 0; i < productList.length; i++) {
                 Product pro= new Product();
-                personList[i]= pro;
+                productList[i]= pro;
                 delegate.addProduct(pro);
             }
 
-            when(restTemplate.getForObject(baseurl+"/productsRest/list",Product[].class)).thenReturn(personList);
+            when(restTemplate.getForObject(baseurl+"/productsRest/list",Product[].class)).thenReturn(productList);
 
             assertEquals(delegate.showProductList().size(),4);
         }
@@ -108,17 +113,17 @@ public class BusinessDelegateTest {
             p.setProductsubcategory(pSubCategory);
             p.setSize(BigDecimal.valueOf(12));
             p.setWeight(BigDecimal.valueOf(12));
-
+            delegate.addProduct(p);
             when(restTemplate.postForObject(baseurl + "/productsRest/addproduct/", p, Product.class)).thenReturn(p);
-            assertEquals(delegate.addProduct(p).getProductid(), p.getProductid());
+            assertEquals(delegate.getProduct(p.getProductid()), p.getProductid());
         }
 
         @Test
         void findByIdProductTest() {
-            when(restTemplate.getForObject(baseurl + "/productsRest/addproduct/"+pro.getProductid(), Product.class)).thenReturn(person);
+            when(restTemplate.getForObject(baseurl + "/productsRest/view/"+pro.getProductid(), Product.class)).thenReturn(pro);
             assertEquals(delegate.getProduct(pro.getProductid()).getProductid(), pro.getProductid());
         }
-
+/*
 		@Test
 		void updateProductTest(){
 			delegate.addProduct(pro);
@@ -149,223 +154,200 @@ public class BusinessDelegateTest {
 
 			delegate.deleteProduct(p);
 			verify(restTemplate).put(baseurl + "/productsRest/delete/" +p.getProductid(), p, Product.class);
-		}
+		}*/
     }
 
     @Nested
-    @DisplayName("Test methods for ")
-    class CategoryTest{
+    @DisplayName("Test methods for location ")
+    class LocationTest{
         @BeforeEach
         void setUp() {
-            Productcategory pCategory = new Productcategory();
-            pCategory.setName("Tech");
-
-            Productsubcategory pSubCategory = new Productsubcategory();
-            pSubCategory.setName("Motorola");
-            pSubCategory.setProductcategory(pCategory);
+            loc = new Location();
+            loc.setLocationid(1);
+            loc.setName("stan1");
+            loc.setAvailability(BigDecimal.valueOf(2));
+            loc.setCostrate(BigDecimal.valueOf(1));
 
             delegate= new BusinessDelegateImpl();
             delegate.setRestTemplate(restTemplate);
         }
 
         @Test
-        void findAllTerritoriesTest(){
-            Salesterritory[] territoryList= new Salesterritory[2];
-            for (int i = 0; i < territoryList.length; i++) {
-                Salesterritory territory= new Salesterritory();
-                territoryList[i]= territory;
-                delegate.addSalesterritory(territory);
+        void findAllLocationTest(){
+            Location[] locationList= new Location[2];
+            for (int i = 0; i < locationList.length; i++) {
+                Location loc2= new Location();
+                locationList[i]= loc2;
+                delegate.addLocation(loc2);
             }
-            when(restTemplate.getForObject(URLTERRITORY,Salesterritory[].class)).thenReturn(territoryList);
-            assertEquals(delegate.getSalesterritory().size(),2);
+            when(restTemplate.getForObject(baseurl + "/locationsRest/list",Location[].class)).thenReturn(locationList);
+            assertEquals(delegate.showLocations().size(),2);
         }
 
         @Test
-        void addSalesTerritoryTest(){
-            Salesterritory t= new Salesterritory();
-            territory.setTerritoryid(1);
-            territory.setCountryregioncode("COL");
-            territory.setName("Colombia");
-
-            when(restTemplate.postForObject(URLTERRITORY, t, Salesterritory.class)).thenReturn(t);
-            assertEquals(delegate.addSalesterritory(t).getTerritoryid(), t.getTerritoryid());
+        void addLocationTest(){
+            Location l = new Location();
+            l.setName("stan1");
+            l.setAvailability(BigDecimal.valueOf(2));
+            l.setCostrate(BigDecimal.valueOf(1));
+            delegate.addLocation(l);
+            when(restTemplate.postForObject(baseurl + "/locationsRest/addlocation/", l, Location.class)).thenReturn(l);
+            assertEquals(delegate.getLocation(l.getLocationid()), l.getLocationid());
         }
 
         @Test
-        void findByIdSalesTerritoryTest(){
-            when(restTemplate.getForObject(URLTERRITORY+territory.getTerritoryid(), Salesterritory.class)).thenReturn(territory);
-            assertEquals(delegate.findByIdTerritory(territory.getTerritoryid()).getTerritoryid(), territory.getTerritoryid());
+        void findByIdLocationTest(){
+            when(restTemplate.getForObject(baseurl + "/locationsRest/view/" +loc.getLocationid(), Location.class)).thenReturn(loc);
+            assertEquals(delegate.getLocation(loc.getLocationid()).getLocationid(), loc.getLocationid());
         }
     }
 
     @Nested
-    @DisplayName("Test methods for sales personquota")
-    class SalesPersonQuotaTest{
+    @DisplayName("Test methods for Productcategory")
+    class ProductcategoryTest{
         @BeforeEach
         void setUp() {
-            person= new Salesperson();
-            person.setBusinessentityid(1);
-            person.setCommissionpct(new BigDecimal(1));
-            person.setSalesquota(new BigDecimal(30));
+            pc= new Productcategory();
+            pc.setName("Tech");
 
-            personquota= new Salespersonquotahistory();
-            personquota.setSalesquota(new BigDecimal(40));
-            personquota.setSalesperson(person);
-
-            delegate= new BusinessDelegate();
+            delegate= new BusinessDelegateImpl();
             delegate.setRestTemplate(restTemplate);
         }
 
         @Test
-        void findAllPersonQuotaTest() {
-            Salespersonquotahistory[] personquotaList= new Salespersonquotahistory[10];
-            for (int i = 0; i < personquotaList.length; i++) {
-                Salespersonquotahistory personquota= new Salespersonquotahistory();
-                personquotaList[i]= personquota;
-                delegate.addPersonQuota(personquota);
+        void findAllProductcategoryTest() {
+            Productcategory[] pcList= new Productcategory[3];
+            for (int i = 0; i < pcList.length; i++) {
+                Productcategory personquota= new Productcategory();
+                pcList[i]= personquota;
+                delegate.addProductcategory(personquota);
             }
-            when(restTemplate.getForObject(URLPERSONQUOTA,Salespersonquotahistory[].class)).thenReturn(personquotaList);
-            assertEquals(delegate.getSalespersonQuota().size(),10);
+            when(restTemplate.getForObject(baseurl + "/productcategoryRest/list",Productcategory[].class)).thenReturn(pcList);
+            assertEquals(delegate.showProductcategoryList().size(),3);
         }
 
-        @Test
-        void addSalesPersonQuotaTest(){
-            Salespersonquotahistory pq= new Salespersonquotahistory();
-            personquota.setSalesquota(new BigDecimal(66));
-            personquota.setSalesperson(person);
 
-            when(restTemplate.postForObject(URLPERSONQUOTA, pq, Salespersonquotahistory.class)).thenReturn(pq);
-            assertEquals(delegate.addPersonQuota(pq).getBusinessentityid(), pq.getBusinessentityid());
-        }
 
-        @Test
-        void findByIdPersonQuotaTest() {
-            when(restTemplate.getForObject(URLPERSONQUOTA+personquota.getBusinessentityid(), Salespersonquotahistory.class)).thenReturn(personquota);
-            assertEquals(delegate.findByIdPersonQuota(personquota.getBusinessentityid()).getBusinessentityid(), personquota.getBusinessentityid());
-        }
     }
-
     @Nested
-    @DisplayName("Test methods for salesterritory history")
-    class SalesTerritoryHistoryTest{
+    @DisplayName("Test methods for Productsubcategory")
+    class ProductsubcategoryTest{
         @BeforeEach
         void setUp() {
-            territoryhistory= new Salesterritoryhistory();
-            territory= new Salesterritory();
-            territory.setTerritoryid(1);
-            territory.setCountryregioncode("COL");
-            territory.setName("Colombia");
+            Productcategory pCategory = new Productcategory();
+            pCategory.setName("Tech");
 
-            territoryhistory.setSalesterritory(territory);
+            psc = new Productsubcategory();
+            psc.setName("Huawei");
+            psc.setProductcategory(pCategory);
 
-            delegate= new BusinessDelegate();
+            delegate= new BusinessDelegateImpl();
             delegate.setRestTemplate(restTemplate);
         }
 
         @Test
-        void findAllSalesTerritoryHistoryTest() {
-            Salesterritoryhistory[] territoryhistoryList= new Salesterritoryhistory[3];
-            for (int i = 0; i < territoryhistoryList.length; i++) {
-                Salesterritoryhistory territoryhistory= new Salesterritoryhistory();
-                territoryhistoryList[i]= territoryhistory;
-                delegate.addTerritoryHistory(territoryhistory);
+        void findAllProductsubcategoryTest() {
+            Productsubcategory[] pscList= new Productsubcategory[3];
+            for (int i = 0; i < pscList.length; i++) {
+                Productsubcategory personquota= new Productsubcategory();
+                pscList[i]= personquota;
+                delegate.addProductsubcategory(personquota);
             }
-            when(restTemplate.getForObject(URLTERRITORYHISTORY,Salesterritoryhistory[].class)).thenReturn(territoryhistoryList);
-            assertEquals(delegate.getSalesterritoryHistory().size(),3);
+            when(restTemplate.getForObject(baseurl + "/productsubcategoryRest/list",Productsubcategory[].class)).thenReturn(pscList);
+            assertEquals(delegate.showProductsubcategoryList().size(),3);
+        }
+
+
+
+    }
+    @Nested
+    @DisplayName("Test methods for productCostHistory")
+    class ProductcosthistoryTest{
+        @BeforeEach
+        void setUp() {
+
+            pch = new Productcosthistory();
+            pch.setProduct(pro);
+            pch.setStartdate(LocalDate.of(2022, 4, 13));
+            pch.setEnddate(LocalDate.of(2022, 4, 14));
+            pch.setStandardcost(BigDecimal.valueOf(12));
+
+            delegate= new BusinessDelegateImpl();
+            delegate.setRestTemplate(restTemplate);
         }
 
         @Test
-        void addSalesTerritoryHistoryTest() {
-            Salesterritoryhistory th= new Salesterritoryhistory();
-            th.setSalesterritory(territory);
-
-            when(restTemplate.postForObject(URLTERRITORYHISTORY, th, Salesterritoryhistory.class)).thenReturn(th);
-            assertEquals(delegate.addTerritoryHistory(th).getId(), th.getId());
+        void findAllProductCostHistoryTest() {
+            Productcosthistory[] costhistoryList= new Productcosthistory[3];
+            for (int i = 0; i < costhistoryList.length; i++) {
+                Productcosthistory territoryhistory= new Productcosthistory();
+                costhistoryList[i]= territoryhistory;
+                delegate.addProductHistoriccost(territoryhistory);
+            }
+            when(restTemplate.getForObject(baseurl + "/historiccostsRest/list",Productcosthistory[].class)).thenReturn(costhistoryList);
+            assertEquals(delegate.showProductHistoriccostList().size(),3);
         }
 
         @Test
-        void findByIdSalesTerritoryHistoryTest() {
-            when(restTemplate.getForObject(URLTERRITORYHISTORY+territoryhistory.getId(), Salesterritoryhistory.class)).thenReturn(territoryhistory);
-            assertEquals(delegate.findByIdTerritoryHistory(territoryhistory.getId()).getId(), territoryhistory.getId());
+        void addProductCostHistoryTest() {
+            Productcosthistory th= new Productcosthistory();
+            th.setProduct(pro);
+            th.setStartdate(LocalDate.of(2022, 8, 13));
+            th.setEnddate(LocalDate.of(2022, 8, 18));
+            th.setStandardcost(BigDecimal.valueOf(2));
+            delegate.addProductHistoriccost(th);
+            when(restTemplate.postForObject(baseurl + "/historiccostsRest/addproductcost/", th, Productcosthistory.class)).thenReturn(th);
+            assertEquals(delegate.getProductHistoriccost(th.getId()), th.getId());
+        }
+
+        @Test
+        void findByIdProductCostHistoryTest() {
+            when(restTemplate.getForObject(baseurl + "/historiccostsRest/view/"+pch.getId(), Productcosthistory.class)).thenReturn(pch);
+            assertEquals(delegate.getProductHistoriccost(pch.getId()).getId(), pch.getId());
         }
     }
 
     @Nested
-    @DisplayName("Test methods for currency")
-    class CurrencyTest{
+    @DisplayName("Test methods for productinventory")
+    class ProductinventoryTest{
         @BeforeEach
         void setUp(){
-            currency= new Currency();
-            currency.setCurrencycode("USD");
-            currency.setName("Dolares");
+            pi= new Productinventory();
+            pi.setLocation(loc);
+            pi.setProduct(pro);
+            pi.setQuantity(3);
 
-            delegate= new BusinessDelegate();
+            delegate= new BusinessDelegateImpl();
             delegate.setRestTemplate(restTemplate);
         }
 
         @Test
-        void findAllCurrenciesTest() {
-            Currency[] currencyList= new Currency[6];
-            for (int i = 0; i < currencyList.length; i++) {
-                Currency currency= new Currency();
-                currencyList[i]= currency;
-                delegate.addCurrency(currency);
+        void findAllProductinventoryTest() {
+            Productinventory[] piList= new Productinventory[6];
+            for (int i = 0; i < piList.length; i++) {
+                Productinventory currency= new Productinventory();
+                piList[i]= currency;
+                delegate.addProductInventory(currency);
             }
-            when(restTemplate.getForObject(URLCURRENCY,Currency[].class)).thenReturn(currencyList);
-            assertEquals(delegate.getCurrency().size(),6);
+            when(restTemplate.getForObject(baseurl + "/inventoryproductRest/list",Productinventory[].class)).thenReturn(piList);
+            assertEquals(delegate.showProductInventorytList().size(),6);
         }
 
         @Test
-        void addCurrencyTest() {
-            Currency c= new Currency();
-
-            when(restTemplate.postForObject(URLCURRENCY, c, Currency.class)).thenReturn(c);
-            assertEquals(delegate.addCurrency(c).getCurrencycode(), c.getCurrencycode());
+        void addProductinventoryTest() {
+            Productinventory c= new Productinventory();
+            c.setLocation(loc);
+            c.setProduct(pro);
+            c.setQuantity(8);
+            delegate.addProductInventory(c);
+            when(restTemplate.postForObject(baseurl + "/inventoryproductRest/addproductinventory/", c, Productinventory.class)).thenReturn(c);
+            assertEquals(delegate.getProductInventory(c.getId()), c.getId());
         }
 
         @Test
-        void findByIdCurrencyTest() {
-            when(restTemplate.getForObject(URLCURRENCY+currency.getCurrencycode(), Currency.class)).thenReturn(currency);
-            assertEquals(delegate.findbyIdCurrency(currency.getCurrencycode()).getCurrencycode(), currency.getCurrencycode());
-        }
-    }
-
-    @Nested
-    @DisplayName("Test methods for currencyrate")
-    class CurrencyRateTest{
-        @BeforeEach
-        void setUp() {
-            currencyrate= new Currencyrate();
-            currencyrate.setAveragerate(new BigDecimal(5));
-
-            delegate= new BusinessDelegate();
-            delegate.setRestTemplate(restTemplate);
-        }
-
-        @Test
-        void findAllCurrencyRateTest(){
-            Currencyrate[] currencyrateList= new Currencyrate[2];
-            for (int i = 0; i < currencyrateList.length; i++) {
-                Currencyrate currencyrate= new Currencyrate();
-                currencyrateList[i]= currencyrate;
-                delegate.addCurrencyrate(currencyrate);
-            }
-            when(restTemplate.getForObject(URLCURRENCYRATE,Currencyrate[].class)).thenReturn(currencyrateList);
-            assertEquals(delegate.getCurrencyrate().size(),2);
-        }
-
-        @Test
-        void addCurrencyRateTest() {
-            Currencyrate cr= new Currencyrate();
-
-            when(restTemplate.postForObject(URLCURRENCYRATE, cr, Currencyrate.class)).thenReturn(cr);
-            assertEquals(delegate.addCurrencyrate(cr).getCurrencyrateid(), cr.getCurrencyrateid());
-        }
-
-        @Test
-        void findByIdCurrencyRateTest() {
-            when(restTemplate.getForObject(URLCURRENCYRATE+currencyrate.getCurrencyrateid(), Currencyrate.class)).thenReturn(currencyrate);
-            assertEquals(delegate.findbyIdCurrencyRate(currencyrate.getCurrencyrateid()).getCurrencyrateid(), currencyrate.getCurrencyrateid());
+        void findByIdProductinventoryTest() {
+            when(restTemplate.getForObject(baseurl + "/inventoryproductRest/view/"+pi.getId(), Productinventory.class)).thenReturn(pi);
+            assertEquals(delegate.getProductInventory(pi.getId()).getId(), pi.getId());
         }
     }
 
