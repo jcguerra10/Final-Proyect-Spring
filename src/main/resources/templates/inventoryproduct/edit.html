@@ -27,14 +27,14 @@
 						<div>
 							<div class="form-group">
 								<label>Product</label> <select class="form-control"
-									th:field="*{product}">
+									th:field="*{productinvid2}">
 									<option th:each="p : ${products}" th:value="${p.productid}"
 										th:text="${#strings.capitalize(p.name)}"></option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label>Location</label> <select class="form-control"
-									th:field="*{location}">
+									th:field="*{locationinvid2}">
 									<option th:each="p : ${locations}" th:value="${p.locationid}"
 										th:text="${#strings.capitalize(p.name)}"></option>
 								</select>

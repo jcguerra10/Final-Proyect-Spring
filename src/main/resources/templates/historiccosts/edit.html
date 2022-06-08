@@ -27,7 +27,7 @@
 						<div>
 							<div class="form-group">
 								<label>Product</label> <select class="form-control"
-									th:field="*{product}">
+									th:field="*{productCostid2}">
 									<option th:each="p : ${products}" th:value="${p.productid}"
 										th:text="${#strings.capitalize(p.name)}"></option>
 								</select> <span th:if="${#fields.hasErrors('product')}"
